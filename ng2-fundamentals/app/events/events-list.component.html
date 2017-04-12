@@ -1,0 +1,5 @@
+<div>
+    <h1>Upcoming Policy Proposals</h1>
+        <event-thumbnail #thumbnail *ngFor="let event of events" [event]="event"  (click)="handleThumbnailClick(event.name)"></event-thumbnail>
+
+</div>
