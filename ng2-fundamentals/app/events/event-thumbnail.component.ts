@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core'
+import {IEvent} from "./shared/index";
 
 
 @Component({
     selector: 'event-thumbnail',
-    template: `
-        
+    template: `        
         <div [routerLink]="['/events', event.id]" class="well hoverwell thumbnail">
             <h2><p>{{event.name}}</p></h2>    
             <div>Date: {{event?.date }} </div>
@@ -26,20 +26,13 @@ import {Component, EventEmitter, Input, Output} from '@angular/core'
             <div *ngIf="event?.onlineUrl">
                 Online Url: {{event?.onlineUrl}}
             </div>
-        
-        
+            
         </div>
-        
-        
-        
-        
-        
-        
         <button class="btn btn-primary" (click)='handleClickMe()'>Click Me</button>
     `
 })
-export class EventThumbnailComponent {4
-    @Input() event:any
+export class EventThumbnailComponent {
+    @Input() event:IEvent
     @Output() eventClick = new EventEmitter()
 
     handleClickMe() {

@@ -13,7 +13,5 @@ import { Component } from '@angular/core'
         </div>
     `,
 })
-export class ProfileComponent {
-
-}
+export class ProfileComponent {}
 
