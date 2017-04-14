@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {EventService} from "../../shared/event.service";
+import {EventService} from "../shared/event.service";
 import {ActivatedRoute} from "@angular/router";
 @Component({
     templateUrl: 'app/events/event-detail/event-detail.component.html'
