@@ -1,28 +1,28 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { RouterModule } from "@angular/router";
+import {HttpModule} from "@angular/http";
 
 import {
-    EventsListComponent,
-    EventThumbnailComponent,
-    EventService,
-    EventDetailsComponent,
-    CreateEventComponent,
-    EventRouteActivator,
-    EventListResolver,
-    CreateSessionsComponent
-} from './events/index'
+    EventsListComponent, EventThumbnailComponent, EventService,
+    EventDetailsComponent, CreateEventComponent, EventListResolver,
+    CreateSessionsComponent, LocationValidator, EventsAppComponent
+    }   from './events/index'
+import { UpvoteComponent, VoterService,
+         SessionList }
+         from "./events/event-detail/index";
+import {TOASTR_TOKEN, Toastr,
+        JQ_TOKEN, ModalTriggerDirective,
+        CollapsibleWellComponent, SimpleModalComponent
+        } from "./common/index";
 
 import { NavBarComponent } from './nav/navbar.component';
-import { RouterModule } from "@angular/router";
-import { EventsAppComponent } from './events/events-app.component';
-import {TOASTR_TOKEN, Toastr, JQ_TOKEN, ModalTriggerDirective, CollapsibleWellComponent, SimpleModalComponent
-        } from "./common/index";
 import {appRoutes} from "./route";
 import {Error404Component} from "./errors/404.component";
 import {AuthService} from "./user/auth.service";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {SessionList} from "./events/event-detail/session-list.component";
 import {DurationPipe} from "./events/shared/duration.pipe";
+import {EventResolver} from "./events/event-detail/event-resolver.service";
 
 declare let toastr : Toastr
 declare let jQuery : Object
@@ -31,6 +31,7 @@ declare let jQuery : Object
     imports: [
         BrowserModule,
         FormsModule,
+        HttpModule,
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes)
     ],
@@ -47,14 +48,17 @@ declare let jQuery : Object
         CollapsibleWellComponent,
         SimpleModalComponent,
         ModalTriggerDirective,
+        LocationValidator,
+        UpvoteComponent,
         DurationPipe
     ],
     providers: [
         EventService,
         {provide: TOASTR_TOKEN, useValue: toastr },
         {provide: JQ_TOKEN, useValue: jQuery },
-        EventRouteActivator,
         EventListResolver,
+        EventResolver,
+        VoterService,
         AuthService,
         {
             provide: 'canDeactivateCreateEvent',
