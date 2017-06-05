@@ -23,6 +23,7 @@ export const appRoutes:Routes = [
     { path: 'events/session/new', component: CreateSessionsComponent},
     { path: '404', component: Error404Component },
     { path: '', redirectTo: '/events', pathMatch: 'full' },
+    //lazy loaded module
     { path: 'user', loadChildren: 'app/user/user.module#UserModule'}
 
 ]
